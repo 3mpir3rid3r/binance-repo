@@ -17,7 +17,7 @@ public class TestnetGeneralExample {
 
 
     public static void main(String[] args) throws InterruptedException {
-        BinanceFuturesApiClientFactory testnetFactory = BinanceAbstractFactory.createTestnetFactory(API_KEY, SECRET_KEY);
+        BinanceFuturesApiClientFactory testnetFactory = BinanceAbstractFactory.createFuturesTestnetFactory(API_KEY, SECRET_KEY);
         BinanceApiFuturesRestClient futureClient = testnetFactory.newRestClient();
 
         // Get account information

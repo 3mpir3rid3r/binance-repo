@@ -26,13 +26,14 @@ public abstract class BinanceAbstractFactory {
         final String websocketUrl = getWebsocketUrl(apiConfigClass);
         switch (engineType) {
             case SPOT:
+            case SPOT_TESTNET:
                 return BinanceSpotApiClientFactory.newInstance(apiKey, secretKey, apiUrl, websocketUrl);
             case MARGIN:
                 return BinanceMarginApiClientFactory.newInstance(apiKey, secretKey, apiUrl, websocketUrl);
             case SWAP:
                 return BinanceSwapApiClientFactory.newInstance(apiKey, secretKey, apiUrl);
             case FUTURES:
-            case TESTNET:
+            case FUTURES_TESTNET:
                 return BinanceFuturesApiClientFactory.newInstance(apiKey, secretKey, apiUrl, websocketUrl);
         }
         throw new IllegalArgumentException();
@@ -55,8 +56,10 @@ public abstract class BinanceAbstractFactory {
                 return createSwapFactory(apiKey, secretKey);
             case FUTURES:
                 return createFuturesFactory(apiKey, secretKey);
-            case TESTNET:
-                return createTestnetFactory(apiKey, secretKey);
+            case FUTURES_TESTNET:
+                return createFuturesTestnetFactory(apiKey, secretKey);
+            case SPOT_TESTNET:
+                return createSpotTestnetFactory(apiKey, secretKey);
         }
         throw new IllegalArgumentException();
     }
@@ -119,10 +122,23 @@ public abstract class BinanceAbstractFactory {
      * @param secretKey
      * @return instance of object extended BinanceFactory
      */
-    public static BinanceFuturesApiClientFactory createTestnetFactory(String apiKey, String secretKey) {
-        final String apiUrl = getApiUrl(TestnetApiConfig.class);
-        final String websocketUrl = getWebsocketUrl(TestnetApiConfig.class);
+    public static BinanceFuturesApiClientFactory createFuturesTestnetFactory(String apiKey, String secretKey) {
+        final String apiUrl = getApiUrl(FuturesTestnetApiConfig.class);
+        final String websocketUrl = getWebsocketUrl(FuturesTestnetApiConfig.class);
         return BinanceFuturesApiClientFactory.newInstance(apiKey, secretKey, apiUrl, websocketUrl);
+    }
+
+    /**
+     * Basic and simple create testnet engine factory .
+     *
+     * @param apiKey
+     * @param secretKey
+     * @return instance of object extended BinanceFactory
+     */
+    public static BinanceSpotApiClientFactory createSpotTestnetFactory(String apiKey, String secretKey) {
+        final String apiUrl = getApiUrl(SpotTestnetApiConfig.class);
+        final String websocketUrl = getWebsocketUrl(SpotTestnetApiConfig.class);
+        return BinanceSpotApiClientFactory.newInstance(apiKey, secretKey, apiUrl, websocketUrl);
     }
 
     /**
@@ -142,8 +158,15 @@ public abstract class BinanceAbstractFactory {
     /**
      * @return instance of BinanceSpotApiClientFactory
      */
-    public static BinanceFuturesApiClientFactory createTestnetFactory() {
-        return createTestnetFactory(null, null);
+    public static BinanceFuturesApiClientFactory createFuturesTestnetFactory() {
+        return createFuturesTestnetFactory(null, null);
+    }
+
+    /**
+     * @return instance of BinanceSpotApiClientFactory
+     */
+    public static BinanceSpotApiClientFactory createSpotTestnetFactory() {
+        return createSpotTestnetFactory(null, null);
     }
 
     /**

@@ -8,5 +8,6 @@ public enum BinanceEngineType {
     MARGIN,
     SWAP,
     FUTURES,
-    TESTNET
+    SPOT_TESTNET,
+    FUTURES_TESTNET
 }

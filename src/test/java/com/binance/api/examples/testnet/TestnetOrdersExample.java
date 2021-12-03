@@ -2,7 +2,9 @@ package com.binance.api.examples.testnet;
 
 import com.binance.api.client.api.sync.BinanceApiFuturesRestClient;
 import com.binance.api.client.constant.BinanceApiConstants;
-import com.binance.api.client.domain.*;
+import com.binance.api.client.domain.OrderSide;
+import com.binance.api.client.domain.OrderType;
+import com.binance.api.client.domain.PrecisionFormat;
 import com.binance.api.client.domain.account.FuturesNewOrder;
 import com.binance.api.client.domain.general.ExchangeInfo;
 import com.binance.api.client.domain.general.SymbolInfo;
@@ -23,7 +25,7 @@ public class TestnetOrdersExample {
 
 
     public static void main(String[] args) throws InterruptedException {
-        BinanceFuturesApiClientFactory testnetFactory = BinanceAbstractFactory.createTestnetFactory(API_KEY, SECRET_KEY);
+        BinanceFuturesApiClientFactory testnetFactory = BinanceAbstractFactory.createFuturesTestnetFactory(API_KEY, SECRET_KEY);
         BinanceApiFuturesRestClient futureClient = testnetFactory.newRestClient();
 
 

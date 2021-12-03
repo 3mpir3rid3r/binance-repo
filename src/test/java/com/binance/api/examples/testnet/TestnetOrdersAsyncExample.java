@@ -17,7 +17,7 @@ public class TestnetOrdersAsyncExample {
     private static final String SECRET_KEY = "";
 
     public static void main(String[] args) {
-        BinanceFuturesApiClientFactory factory = BinanceAbstractFactory.createTestnetFactory(API_KEY, SECRET_KEY);
+        BinanceFuturesApiClientFactory factory = BinanceAbstractFactory.createFuturesTestnetFactory(API_KEY, SECRET_KEY);
         BinanceApiAsyncFuturesRestClient client = factory.newAsyncRestClient();
 
 
